@@ -37,31 +37,36 @@ switch ($_SERVER['REQUEST_URI']) {
         $page = (in_array($page, $pages)) ? $page : '404';
 }
 
-switch ($page) {
-    case '404':
-        $title = 'Biker Michael - Ooops! 404';
-        break;
-    case 'build-plans':
-        $title = 'Biker Michael - Build Plans';
-        break;
-    case 'buy-parts':
-        $title = 'Biker Michael - Buy Parts';
-        break;
-    case 'contact':
-        $title = 'Biker Michael - Contact';
-        break;
-    case 'gallery':
-        $title = 'Biker Michael - Gallery';
-        break;
-    case 'history':
-        $title = 'Biker Michael - History';
-        break;
-    case 'progress':
-        $title = 'Biker Michael - Progress';
-        break;
-    case 'home':
-        $title = 'Biker Michael - Building a Cafe Racer';
-        break;
+function get_page_title($page) {
+
+    switch ($page) {
+        case '404':
+            $title = 'Biker Michael - Ooops! 404';
+            break;
+        case 'build-plans':
+            $title = 'Biker Michael - Build Plans';
+            break;
+        case 'buy-parts':
+            $title = 'Biker Michael - Buy Parts';
+            break;
+        case 'contact':
+            $title = 'Biker Michael - Contact';
+            break;
+        case 'gallery':
+            $title = 'Biker Michael - Gallery';
+            break;
+        case 'history':
+            $title = 'Biker Michael - History';
+            break;
+        case 'progress':
+            $title = 'Biker Michael - Progress';
+            break;
+        case 'home':
+            $title = 'Biker Michael - Building a Cafe Racer';
+            break;
+    }
+
+    return $title;
 }
 
 $gallery = [
@@ -169,6 +174,8 @@ $parts = [
     ],
 
 ];
+
+$title = get_page_title($page);
 
 $data = (object) compact('page', 'gallery', 'parts', 'title');
 

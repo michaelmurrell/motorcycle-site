@@ -21,6 +21,7 @@ use \Symfony\Component\Filesystem\Filesystem;
 foreach ($pages as $page) {
 
     $data->page = $page;
+    $data->title = get_page_title($page);
 
     ob_start();
 

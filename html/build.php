@@ -1,18 +1,22 @@
 <?php 
 
-include 'config.php';
+require_once('config.php');
+
+require __DIR__ . '/vendor/autoload.php';
+
+$buildPath  = APP_DIR . '/../build';
+$assetsPath = APP_DIR . '/assets/';
 
 // remove build folder
-use Symfony\Component\Filesystem\Filesystem;
+use \Symfony\Component\Filesystem\Filesystem;
 
-(new Filesystem)->remove(APP_DIR . '/../build');
+(new Filesystem)->remove($buildPath);
 
 // mkdir build folder
-(new Filesystem)->mkdir(APP_DIR . '/../build');
+(new Filesystem)->mkdir($buildPath);
 
-// Copy assets
-
-(new Filesystem)->mkdir(APP_DIR . '/assets', APP_DIR . '/../build');
+// Copy assets (mirror for directies)
+(new Filesystem)->mirror($assetsPath, $buildPath . '/assets');
 
 foreach ($pages as $page) {
 
@@ -28,8 +32,7 @@ foreach ($pages as $page) {
 
     $output = ob_get_clean();
 
-    $put_to = APP_DIR . '/../build/' . "$page.html";
-    error_log($put_to);
+    $put_to = $buildPath . "/$page.html";
 
     file_put_contents($put_to, $output);
 

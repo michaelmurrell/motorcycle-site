@@ -32,6 +32,8 @@ foreach ($pages as $page) {
 
     $output = ob_get_clean();
 
+    $page = ($page == 'home')  ? 'index' : $page;
+
     $put_to = $buildPath . "/$page.html";
 
     file_put_contents($put_to, $output);

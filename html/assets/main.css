@@ -259,7 +259,7 @@ body.page-home footer {
 
 body.page-home {
     background-color: #333;
-    background-image: url(images/backgrounds/home-motorcycle.jpg);
+    background-image: url('images/backgrounds/home-motorcycle.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
